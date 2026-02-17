@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finalizar Presente 💝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url(/imagens/tirando-oculos.jpg);
+      background-size: cover;
+      background-position: center calc(50% + 70px);
+      background-repeat: no-repeat;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .gift-box {
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    textarea {
+        resize: none;
+        width: 95%;
+    }
+
+    button {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #333;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 250px;
+    }
+
+    .fallback {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .pix-key {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+
+    /* SUCCESS SCREEN */
+    .success-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.1s ease;
+    }
+
+    .success-screen.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .success-content {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .success-content h3 {
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Finalize seu presente 💝</h2>
+
+    <div class="gift-box">
+      <p id="gift-info"></p>
+    </div>
+
+    <form id="checkout-form">
+      <input type="text" id="name" placeholder="Seu nome" required>
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <textarea id="message" rows="3" placeholder="Mensagem (opcional)" maxlength="300"></textarea>
+      <button type="submit">Realizar pagamento</button>
+    </form>
+
+    <div id="qr-container" style="display:none;">
+      <img id="qr-image" />
+      <p>Escaneie o QR Code para pagar</p>
+    </div>
+
+    <div id="fallback" class="fallback">
+      <h3>Envie via Pix manualmente</h3>
+
+      <div class="pix-key">
+        🤵 <strong>Marcos</strong><br>
+        leviaragao17@gmail.com
+      </div>
+
+      <div class="pix-key">
+        👰 <strong>Sâmia</strong><br>
+        samiagomes88@gmail.com<br>
+        +(92)99064011
+      </div>
+
+      <p>Muito obrigado pelo carinho ❤️</p>
+    </div>
+
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-content">
+      <h3>Pedido registrado com sucesso! 💍</h3>
+      <p>Obrigado pelo carinho ❤️<br>
+      Após o pagamento, enviaremos a confirmação por e-mail.</p>
+      <button onclick="closeSuccess()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="checkout.js"></script>
+
+</body>
+</html>
