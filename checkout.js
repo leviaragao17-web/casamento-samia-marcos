@@ -22,7 +22,10 @@ if (!gift) {
   giftInfo.innerText = `${gift.name} - R$ ${gift.price.toFixed(2)}`;
 }
 
-
+//=========== enviaer email ============
+emailjs.init("NQpRhtDodIOKKT34M")
+const templateID = "template_xvxma7o";
+const serviceID = "service_cd96c24";
 // ================= FORM SUBMIT =================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -30,6 +33,14 @@ form.addEventListener("submit", async (e) => {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const message = document.getElementById("message").value.trim();
+
+  emailjs.send(serviceID, templateID,{
+    payer_name: name,
+    payer_email: email,
+    gift_name: gift.name,
+    gift_price: gift.price,
+    message: message
+  });
 
   if (!name || !email) {
     alert("Preencha nome e e-mail.");
@@ -79,4 +90,5 @@ form.addEventListener("submit", async (e) => {
 // ================= FECHAR SUCCESS =================
 function closeSuccess() {
   successScreen.classList.remove("active");
+
 }
